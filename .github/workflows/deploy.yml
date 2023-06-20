@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ master ]
 
-name: `my-app` CI on ECR
+name: 'my-app' CI on ECR
 
 jobs:
   deploy:
