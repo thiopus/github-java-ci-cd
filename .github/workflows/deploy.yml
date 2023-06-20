@@ -1,5 +1,5 @@
 ---
-  name: Deploy to AWS ECR
+  name: Deploy to AWS ECR Repo
   on:
     push:
       paths:
