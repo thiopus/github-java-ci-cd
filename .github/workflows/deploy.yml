@@ -2,8 +2,8 @@
   name: Deploy to AWS ECR
   on:
     push:
-      branches:
-        - main
+      paths:
+        - 'javaapp1/**'
   jobs:
     deploy:
       name: Deploy
