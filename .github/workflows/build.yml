@@ -4,9 +4,10 @@
       branches:
         - main
   jobs:
-    docker-build:
-      name: Build
+    ecr-login:
       runs-on: ubuntu-latest
+      outputs:
+        registry: ${{ steps.login-ecr.outputs.registry }}
       steps:
         - name: Checkout
           uses: actions/checkout@v4
@@ -22,9 +23,14 @@
           id: login-ecr
           uses: aws-actions/amazon-ecr-login@v2
 
-        - name: Build and push
+    build-and-push-ecr:
+      name: Build and push
+      needs: ecr-login
+      runs-on: ubuntu-latest
+      steps:
+        - name: Build and push to ecr repository
           env:
-            REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+            REGISTRY: ${{ needs.ecr-login.outputs.registry }}
             REPOSITORY: ${{ secrets.REPOSITORY }}
             IMAGE_TAG: ${{ github.sha }}
           uses: docker/build-push-action@v6
