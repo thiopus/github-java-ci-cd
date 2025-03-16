@@ -23,11 +23,9 @@
 
         - name: Build and push to ecr repository
           env:
-            REGISTRY: ${{ secrets.REGISTRY }}
-            REPOSITORY: ${{ secrets.REPOSITORY }}
             IMAGE_TAG: ${{ github.sha }}
           uses: docker/build-push-action@v6
           with:
             context: .
             push: true
-            tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+            tags: ${{ secrets.REGISTRY }}/${{ secrets.REPOSITORY }}:${{ env.IMAGE_TAG }}
