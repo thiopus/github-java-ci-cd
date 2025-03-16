@@ -26,6 +26,8 @@
       needs: ecr-login
       runs-on: ubuntu-latest
       steps:
+        - name: Checkout
+          uses: actions/checkout@v4
         - name: Build and push to ecr repository
           env:
             REGISTRY: ${{ secrets.REGISTRY }}
