@@ -37,4 +37,4 @@
           with:
             context: .
             push: true
-            tags: ${{ env.REGISTRY}}/${{ env.REPOSITORY}}:${{ env.IMAGE_TAG}}
+            tags: ${{ needs.ecr-login.outputs.registry }}/${{ env.REPOSITORY}}:${{ env.IMAGE_TAG}}
